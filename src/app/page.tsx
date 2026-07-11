@@ -10,6 +10,7 @@ import Partners from "../components/Partners";
 import News from "../components/News";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -52,6 +53,9 @@ export default function Home() {
 
       {/* Corporate Footnotes and Contact Directory */}
       <Footer />
+
+      {/* Scroll back to top trigger */}
+      <ScrollToTop />
     </div>
   );
 }
