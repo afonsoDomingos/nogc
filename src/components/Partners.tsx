@@ -1,7 +1,10 @@
 "use client";
 
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Partners() {
+  const { t } = useLanguage();
+  
   const partners = [
     { name: "TotalEnergies", short: "TE" },
     { name: "ExxonMobil", short: "EM" },
@@ -18,7 +21,7 @@ export default function Partners() {
     <section className="py-16 bg-slate-950/60 overflow-hidden relative border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
-          Working Alongside Global & Local Leaders
+          {t("partnersTag")}
         </span>
       </div>
 

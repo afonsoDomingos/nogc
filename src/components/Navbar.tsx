@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,13 +22,13 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Why NOGC", href: "#why-choose-us" },
-    { label: "Projects", href: "#projects" },
-    { label: "ESG", href: "#esg" },
-    { label: "News", href: "#news" },
+    { label: t("navHome"), href: "#home" },
+    { label: t("navAbout"), href: "#about" },
+    { label: t("navServices"), href: "#services" },
+    { label: t("navWhy"), href: "#why-choose-us" },
+    { label: t("navProjects"), href: "#projects" },
+    { label: t("navEsg"), href: "#esg" },
+    { label: t("navNews"), href: "#news" },
   ];
 
   return (
@@ -59,7 +61,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-                key={link.label}
+                key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-slate-300 hover:text-orange transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-orange hover:after:w-full after:transition-all after:duration-300"
               >
@@ -70,22 +72,32 @@ export default function Navbar() {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-4">
-            <button className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white transition-colors duration-200">
+            <button
+              onClick={() => setLanguage(language === "en" ? "pt" : "en")}
+              className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer"
+            >
               <Globe className="w-3.5 h-3.5 text-petroleum" />
-              <span>EN</span>
+              <span>{language === "en" ? "PT" : "EN"}</span>
             </button>
             <a
               href="#contact"
               className="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold tracking-wide text-white rounded-full bg-gradient-to-r from-petroleum to-darkblue hover:from-orange hover:to-orange border border-white/10 transition-all duration-300 shadow-md hover:shadow-orange/20 overflow-hidden group"
             >
               <span className="relative z-10 flex items-center gap-1.5">
-                Contact Us <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                {t("navContact")} <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </span>
             </a>
           </div>
 
           {/* Mobile Menu Toggle Button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-4">
+            <button
+              onClick={() => setLanguage(language === "en" ? "pt" : "en")}
+              className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white transition-colors duration-200"
+            >
+              <Globe className="w-3.5 h-3.5 text-petroleum" />
+              <span>{language === "en" ? "PT" : "EN"}</span>
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors focus:outline-none"
@@ -113,7 +125,7 @@ export default function Navbar() {
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <a
-                key={link.label}
+                key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className="text-lg font-medium text-slate-300 hover:text-orange transition-colors"
@@ -127,7 +139,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white rounded-xl bg-orange hover:bg-orange/95 transition-all text-center shadow-lg"
             >
-              Contact Us <ArrowUpRight className="w-4 h-4" />
+              {t("navContact")} <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
         </div>

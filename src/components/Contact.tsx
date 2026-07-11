@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Mail, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
@@ -46,14 +48,14 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-sm font-semibold uppercase tracking-widest text-orange block mb-3">
-                Get In Touch
+                {t("contactTag")}
               </span>
               <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-6 leading-tight">
-                Connect With Our <br />
-                <span className="text-petroleum text-glow-petroleum">Corporate Team</span>
+                {t("contactTitleLine1")} <br />
+                <span className="text-petroleum text-glow-petroleum">{t("contactTitleLine2")}</span>
               </h2>
               <p className="text-slate-300 font-light leading-relaxed mb-8">
-                Whether you are exploring project procurement, investment partnerships, or careers at NOGC, our team is ready to respond.
+                {t("contactSub")}
               </p>
 
               <div className="space-y-6">
@@ -62,7 +64,7 @@ export default function Contact() {
                     <Phone className="w-5 h-5 text-orange" />
                   </div>
                   <div>
-                    <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Phone</h4>
+                    <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider">{t("contactPhone")}</h4>
                     <p className="text-sm font-semibold text-white hover:text-orange transition-colors">
                       <a href="tel:+258843019001">(+258) 843019001</a>
                     </p>
@@ -74,7 +76,7 @@ export default function Contact() {
                     <Mail className="w-5 h-5 text-petroleum" />
                   </div>
                   <div>
-                    <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Email</h4>
+                    <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider">{t("contactEmail")}</h4>
                     <p className="text-sm font-semibold text-white hover:text-petroleum transition-colors">
                       <a href="mailto:aguinaldo.emilio@nogc.co.mz">aguinaldo.emilio@nogc.co.mz</a>
                     </p>
@@ -86,7 +88,7 @@ export default function Contact() {
                     <MapPin className="w-5 h-5 text-orange" />
                   </div>
                   <div>
-                    <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Address</h4>
+                    <h4 className="text-xs text-slate-400 font-semibold uppercase tracking-wider">{t("contactAddress")}</h4>
                     <p className="text-sm font-semibold text-slate-200">
                       Avenida 25 de Setembro Nº571, Fomento, Matola, Moçambique
                     </p>
@@ -109,7 +111,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                      Full Name *
+                      {t("contactLabelName")}
                     </label>
                     <input
                       type="text"
@@ -117,14 +119,14 @@ export default function Contact() {
                       name="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="e.g. John Doe"
+                      placeholder={t("contactPlaceholderName")}
                       required
                       className="w-full px-5 py-3.5 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-petroleum transition-colors text-sm"
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                      Corporate Email *
+                      {t("contactLabelEmail")}
                     </label>
                     <input
                       type="email"
@@ -132,7 +134,7 @@ export default function Contact() {
                       name="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="e.g. name@company.com"
+                      placeholder={t("contactPlaceholderEmail")}
                       required
                       className="w-full px-5 py-3.5 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-petroleum transition-colors text-sm"
                     />
@@ -141,7 +143,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="subject" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                    Subject
+                    {t("contactLabelSubject")}
                   </label>
                   <input
                     type="text"
@@ -149,14 +151,14 @@ export default function Contact() {
                     name="subject"
                     value={form.subject}
                     onChange={handleChange}
-                    placeholder="e.g. Partnership Request"
+                    placeholder={t("contactPlaceholderSubject")}
                     className="w-full px-5 py-3.5 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-petroleum transition-colors text-sm"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                    Message Details *
+                    {t("contactLabelMessage")}
                   </label>
                   <textarea
                     id="message"
@@ -164,7 +166,7 @@ export default function Contact() {
                     rows={4}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Describe your inquiry..."
+                    placeholder={t("contactPlaceholderMessage")}
                     required
                     className="w-full px-5 py-3.5 rounded-xl bg-slate-950 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-petroleum transition-colors text-sm resize-none"
                   />
@@ -179,11 +181,11 @@ export default function Contact() {
                     {status === "submitting" ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Sending...
+                        {t("contactBtnSending")}
                       </>
                     ) : (
                       <>
-                        Send Message
+                        {t("contactBtnSend")}
                         <Send className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </>
                     )}
@@ -201,15 +203,15 @@ export default function Contact() {
                     className="absolute inset-0 bg-slate-950/95 flex flex-col items-center justify-center text-center p-8 z-20"
                   >
                     <CheckCircle2 className="w-16 h-16 text-green-400 mb-4 animate-bounce" />
-                    <h3 className="font-display font-bold text-2xl text-white mb-2">Message Sent Successfully!</h3>
+                    <h3 className="font-display font-bold text-2xl text-white mb-2">{t("contactSuccessTitle")}</h3>
                     <p className="text-sm text-slate-400 max-w-sm">
-                      Thank you for contacting NOGC. Our corporate relations team will review your inquiry and get back to you shortly.
+                      {t("contactSuccessDesc")}
                     </p>
                     <button
                       onClick={() => setStatus("idle")}
                       className="mt-6 text-xs font-semibold text-orange underline uppercase tracking-widest hover:text-white"
                     >
-                      Send another message
+                      {t("contactSuccessBtn")}
                     </button>
                   </motion.div>
                 )}
@@ -222,7 +224,7 @@ export default function Contact() {
                     className="mt-4 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center gap-3 text-rose-400 text-sm"
                   >
                     <AlertCircle className="w-5 h-5 shrink-0" />
-                    <span>Please fill in all required fields marked with * before submitting.</span>
+                    <span>{t("contactErrorFields")}</span>
                   </motion.div>
                 )}
               </AnimatePresence>

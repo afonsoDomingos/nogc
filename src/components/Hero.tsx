@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="home"
@@ -39,7 +42,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-orange animate-ping" />
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-              Mozambique's Energy Partner
+              {t("heroTag")}
             </span>
           </motion.div>
 
@@ -50,9 +53,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-display font-extrabold text-5xl md:text-7xl tracking-tight text-white mb-6 leading-[1.1]"
           >
-            Powering Mozambique's <br />
+            {t("heroTitleLine1")} <br />
             <span className="bg-gradient-to-r from-petroleum via-sky-400 to-orange bg-clip-text text-transparent text-glow-petroleum">
-              Energy Future
+              {t("heroTitleLine2")}
             </span>
           </motion.h1>
 
@@ -63,7 +66,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-slate-300 font-light leading-relaxed mb-10 max-w-2xl"
           >
-            Delivering innovative, reliable, and sustainable solutions in the Oil & Gas industry, steering Mozambique toward industrial leadership and economic development.
+            {t("heroSub")}
           </motion.p>
 
           {/* Buttons */}
@@ -77,14 +80,14 @@ export default function Hero() {
               href="#about"
               className="px-8 py-4 rounded-full font-semibold text-sm tracking-wide text-white bg-gradient-to-r from-petroleum to-darkblue hover:from-orange hover:to-orange transition-all duration-300 border border-white/10 hover:border-orange shadow-lg hover:shadow-orange/20 flex items-center gap-2 group"
             >
-              About Us
+              {t("heroBtnAbout")}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#contact"
               className="px-8 py-4 rounded-full font-semibold text-sm tracking-wide text-slate-200 bg-white/5 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20"
             >
-              Contact Us
+              {t("heroBtnContact")}
             </a>
           </motion.div>
         </div>
@@ -98,7 +101,7 @@ export default function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
         <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-widest">
-          Scroll to explore
+          {t("heroScroll")}
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}

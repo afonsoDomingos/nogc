@@ -1,28 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Stats() {
+  const { t } = useLanguage();
+
   const metrics = [
     {
-      value: "40+ MW",
-      label: "Renewable Generation Capacity",
-      detail: "Clean solar assets powering local grids.",
+      value: t("stat1Value"),
+      label: t("stat1Label"),
+      detail: t("stat1Detail"),
     },
     {
-      value: "1,500+",
-      label: "Local Jobs Created",
-      detail: "Investing heavily in Mozambican talents.",
+      value: t("stat2Value"),
+      label: t("stat2Label"),
+      detail: t("stat2Detail"),
     },
     {
-      value: "98.7%",
-      label: "Safety HSSE Score",
-      detail: "Exceeding international oil & gas safety rules.",
+      value: t("stat3Value"),
+      label: t("stat3Label"),
+      detail: t("stat3Detail"),
     },
     {
-      value: "15+",
-      label: "Strategic Alliances",
-      detail: "Global energy partnerships across 5 continents.",
+      value: t("stat4Value"),
+      label: t("stat4Label"),
+      detail: t("stat4Detail"),
     },
   ];
 

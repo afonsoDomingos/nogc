@@ -9,37 +9,40 @@ import {
   Leaf,
   Activity,
 } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function WhyChooseUs() {
+  const { t } = useLanguage();
+
   const highlights = [
     {
-      title: "International Standards",
-      description: "We align all operational protocols with ISO requirements, guaranteeing compliance and precision for multinational partnerships.",
+      title: t("whyHl1Title"),
+      description: t("whyHl1Desc"),
       icon: <FileCheck className="w-5 h-5 text-orange" />,
     },
     {
-      title: "Safety First",
-      description: "Our core HSSE policy ensures a zero-accident mindset. We maintain a secure workspace for our staff and contractors.",
+      title: t("whyHl2Title"),
+      description: t("whyHl2Desc"),
       icon: <ShieldAlert className="w-5 h-5 text-petroleum" />,
     },
     {
-      title: "Innovation",
-      description: "We deploy state-of-the-art telemetry, pipeline modeling, and automated logistics to optimize asset efficiency.",
+      title: t("whyHl3Title"),
+      description: t("whyHl3Desc"),
       icon: <Sparkles className="w-5 h-5 text-orange" />,
     },
     {
-      title: "Qualified Professionals",
-      description: "Our workforce is composed of highly certified Mozambican engineers and international industry experts.",
+      title: t("whyHl4Title"),
+      description: t("whyHl4Desc"),
       icon: <Users className="w-5 h-5 text-petroleum" />,
     },
     {
-      title: "Sustainable Operations",
-      description: "We integrate decarbonization efforts into our pipelines and actively fund carbon offset and local ecology projects.",
+      title: t("whyHl5Title"),
+      description: t("whyHl5Desc"),
       icon: <Leaf className="w-5 h-5 text-orange" />,
     },
     {
-      title: "Operational Excellence",
-      description: "Maximize output yields and minimize down-time using premium quality materials and smart supply chains.",
+      title: t("whyHl6Title"),
+      description: t("whyHl6Desc"),
       icon: <Activity className="w-5 h-5 text-petroleum" />,
     },
   ];
@@ -63,17 +66,17 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-sm font-semibold uppercase tracking-widest text-orange block mb-3">
-                Value Proposition
+                {t("whyTag")}
               </span>
               <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-6 leading-tight">
-                Why Partners Choose <br />
-                <span className="text-petroleum text-glow-petroleum">NOGC</span>
+                {t("whyTitleLine1")} <br />
+                <span className="text-petroleum text-glow-petroleum">{t("whyTitleLine2")}</span>
               </h2>
               <p className="text-slate-300 font-light leading-relaxed mb-6">
-                NOGC is built on a foundation of trust, quality control, and industrial modernization. We stand as a bridge connecting Mozambique's natural wealth with the technological standards demanded globally.
+                {t("whyDesc1")}
               </p>
               <p className="text-slate-400 font-light leading-relaxed">
-                By investing heavily in local human capital and keeping safety at the absolute forefront, we minimize operational risks while maximizing socioeconomic returns.
+                {t("whyDesc2")}
               </p>
             </motion.div>
           </div>

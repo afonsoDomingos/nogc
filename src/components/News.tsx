@@ -2,26 +2,29 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function News() {
+  const { t } = useLanguage();
+
   const articles = [
     {
-      category: "Press Release",
-      date: "July 08, 2026",
-      title: "NOGC Expands Local Engineering Capacity in Matola",
-      description: "Inaugurating our state-of-the-art training hub, offering ISO safety certifications and advanced fluid dynamics studies for Mozambican graduates.",
+      category: t("news1Cat"),
+      date: t("news1Date"),
+      title: t("news1Title"),
+      description: t("news1Desc"),
     },
     {
-      category: "Sustainability",
-      date: "June 24, 2026",
-      title: "Mocuba Solar Project Reaches Full 40MW Grid Integration",
-      description: "Successfully delivering clean electricity to the northern grid, offsetting over 25,000 tons of CO2 emissions annually.",
+      category: t("news2Cat"),
+      date: t("news2Date"),
+      title: t("news2Title"),
+      description: t("news2Desc"),
     },
     {
-      category: "Operations",
-      date: "May 15, 2026",
-      title: "Strategic Marine Logistics Agreement Signed for Rovuma Basin",
-      description: "Partnering with global maritime developers to deploy next-generation subsea infrastructure and pipeline monitoring vessels.",
+      category: t("news3Cat"),
+      date: t("news3Date"),
+      title: t("news3Title"),
+      description: t("news3Desc"),
     },
   ];
 
@@ -38,13 +41,13 @@ export default function News() {
             transition={{ duration: 0.6 }}
           >
             <span className="text-sm font-semibold uppercase tracking-widest text-orange">
-              Media Relations
+              {t("newsTag")}
             </span>
             <h2 className="font-display font-bold text-3xl md:text-5xl text-white mt-3 mb-6">
-              Latest Corporate News
+              {t("newsTitle")}
             </h2>
             <p className="text-slate-400 font-light leading-relaxed">
-              Stay up-to-date with NOGC's corporate milestones, strategic partnerships, and ongoing contributions to Mozambique's industrial growth.
+              {t("newsSub")}
             </p>
           </motion.div>
         </div>
@@ -78,7 +81,7 @@ export default function News() {
               </div>
 
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 group-hover:text-white transition-colors cursor-pointer w-fit">
-                <span>Read Full Article</span>
+                <span>{t("newsReadFull")}</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </motion.article>

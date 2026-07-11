@@ -3,28 +3,31 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Projects() {
+  const { t } = useLanguage();
+
   const projects = [
     {
-      title: "Rovuma Basin LNG Development",
-      category: "Natural Gas & LNG",
-      location: "Cabo Delgado, Mozambique",
-      description: "Engineering and construction of offshore subsea collecting systems and processing plants for Mozambique's flagship natural gas fields.",
+      title: t("proj1Title"),
+      category: t("proj1Cat"),
+      location: t("proj1Loc"),
+      description: t("proj1Desc"),
       image: "/project_lng.png",
     },
     {
-      title: "Matola Marine Logistics Fleet",
-      category: "Deepwater Operations",
-      location: "Maputo Bay, Mozambique",
-      description: "Managing deepwater energy vessel operations, offshore drilling logistics, and marine transport of refined petroleum assets.",
+      title: t("proj2Title"),
+      category: t("proj2Cat"),
+      location: t("proj2Loc"),
+      description: t("proj2Desc"),
       image: "/project_drilling.png",
     },
     {
-      title: "Mocuba Utility Solar Facility",
-      category: "Renewable Energy",
-      location: "Zambezia, Mozambique",
-      description: "Installation and operation of 40MW utility-scale photovoltaic grid infrastructure, feeding stable clean energy to local grids.",
+      title: t("proj3Title"),
+      category: t("proj3Cat"),
+      location: t("proj3Loc"),
+      description: t("proj3Desc"),
       image: "/project_solar.png",
     },
   ];
@@ -37,14 +40,14 @@ export default function Projects() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <div className="max-w-xl">
             <span className="text-sm font-semibold uppercase tracking-widest text-orange block mb-3">
-              Strategic Portfolio
+              {t("projectsTag")}
             </span>
             <h2 className="font-display font-bold text-3xl md:text-5xl text-white">
-              Leading Strategic Energy Projects
+              {t("projectsTitle")}
             </h2>
           </div>
           <p className="text-slate-400 font-light max-w-md mt-4 md:mt-0">
-            NOGC actively invests in state-of-the-art infrastructure assets that build Mozambique's energy independence and power domestic heavy industry.
+            {t("projectsSub")}
           </p>
         </div>
 
@@ -96,7 +99,7 @@ export default function Projects() {
                 <hr className="border-white/10 my-4" />
 
                 <div className="flex items-center justify-between text-xs font-semibold text-slate-300">
-                  <span>View Project Case Study</span>
+                  <span>{t("projCaseStudy")}</span>
                   <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-orange group-hover:border-orange group-hover:text-white transition-all duration-300">
                     <ArrowUpRight className="w-4 h-4" />
                   </div>

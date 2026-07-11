@@ -2,23 +2,26 @@
 
 import { motion } from "framer-motion";
 import { ShieldCheck, Compass, Eye, Award } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function AboutUs() {
+  const { t } = useLanguage();
+
   const values = [
     {
       icon: <ShieldCheck className="w-6 h-6 text-orange" />,
-      title: "Our Mission",
-      description: "To deliver reliable, premium energy products and engineering services while upholding safety, operational excellence, and social responsibility in Mozambique.",
+      title: t("aboutMissionTitle"),
+      description: t("aboutMissionDesc"),
     },
     {
       icon: <Eye className="w-6 h-6 text-petroleum" />,
-      title: "Our Vision",
-      description: "To be recognized as the leading Mozambican energy conglomerate, pioneering innovation, technological progress, and a transition to clean energy.",
+      title: t("aboutVisionTitle"),
+      description: t("aboutVisionDesc"),
     },
     {
       icon: <Compass className="w-6 h-6 text-orange" />,
-      title: "Core Values",
-      description: "Integrity, safety compliance, environmental stewardship, local talent empowerment, and compliance with the highest international standards.",
+      title: t("aboutValuesTitle"),
+      description: t("aboutValuesDesc"),
     },
   ];
 
@@ -40,17 +43,17 @@ export default function AboutUs() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-sm font-semibold uppercase tracking-widest text-orange block mb-3">
-                Institutional Profile
+                {t("aboutTag")}
               </span>
               <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-6 leading-tight">
-                A Mozambican Reference in the <br />
-                <span className="text-petroleum text-glow-petroleum">Global Energy Landscape</span>
+                {t("aboutTitleLine1")} <br />
+                <span className="text-petroleum text-glow-petroleum">{t("aboutTitleLine2")}</span>
               </h2>
               <p className="text-slate-300 font-light leading-relaxed mb-6">
-                National Oil & Gas Company (NOGC) SA is a leading corporate entity based in Mozambique. We are dedicated to building a resilient, advanced, and self-sufficient energy sector. Our operations bridge the extraction, processing, and distribution of critical fossil resources, whilst laying the groundwork for a transition to renewable energy sources.
+                {t("aboutDesc1")}
               </p>
               <p className="text-slate-400 font-light leading-relaxed mb-8">
-                Operating from our main headquarters in Matola, Maputo, we represent Mozambican talent and potential. We partner with international developers, local industrial actors, and public stakeholders to deliver state-of-the-art energy infrastructure and consulting.
+                {t("aboutDesc2")}
               </p>
               
               <div className="flex items-center gap-4 p-4 rounded-xl glass-panel-light max-w-md">
@@ -58,8 +61,8 @@ export default function AboutUs() {
                   <Award className="w-6 h-6 text-petroleum" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-white">ISO Compliant Operations</h4>
-                  <p className="text-xs text-slate-400">Committed to international HSSE safety rules.</p>
+                  <h4 className="text-sm font-semibold text-white">{t("aboutIsoTitle")}</h4>
+                  <p className="text-xs text-slate-400">{t("aboutIsoDesc")}</p>
                 </div>
               </div>
             </motion.div>

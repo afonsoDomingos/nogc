@@ -2,40 +2,43 @@
 
 import { motion } from "framer-motion";
 import { Leaf, Heart, Scale } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ESG() {
+  const { t } = useLanguage();
+
   const cards = [
     {
-      title: "Environmental Stewardship",
+      title: t("esgETitle"),
       letter: "E",
       icon: <Leaf className="w-8 h-8 text-green-400" />,
       color: "border-green-500/20 hover:border-green-500/40 shadow-green-500/5",
       points: [
-        "Transitioning pipeline facilities to low-emission tech.",
-        "Developing 100+ MW of renewable energy by 2030.",
-        "Strict bio-diversity protection policies in drilling zones.",
+        t("esgEPoint1"),
+        t("esgEPoint2"),
+        t("esgEPoint3"),
       ],
     },
     {
-      title: "Social Development",
+      title: t("esgSTitle"),
       letter: "S",
       icon: <Heart className="w-8 h-8 text-rose-400" />,
       color: "border-rose-500/20 hover:border-rose-500/40 shadow-rose-500/5",
       points: [
-        "90% of our local workforce consists of Mozambican nationals.",
-        "Empowering local communities through school and healthcare funding.",
-        "Extensive HSSE training programs for field workers.",
+        t("esgSPoint1"),
+        t("esgSPoint2"),
+        t("esgSPoint3"),
       ],
     },
     {
-      title: "Corporate Governance",
+      title: t("esgGTitle"),
       letter: "G",
       icon: <Scale className="w-8 h-8 text-sky-400" />,
       color: "border-sky-500/20 hover:border-sky-500/40 shadow-sky-500/5",
       points: [
-        "Zero-tolerance policy for corruption and anti-competitive practices.",
-        "Transparent operational reporting aligned with international standard-setters.",
-        "Board of directors composed of seasoned energy industry professionals.",
+        t("esgGPoint1"),
+        t("esgGPoint2"),
+        t("esgGPoint3"),
       ],
     },
   ];
@@ -57,13 +60,13 @@ export default function ESG() {
             transition={{ duration: 0.6 }}
           >
             <span className="text-sm font-semibold uppercase tracking-widest text-orange">
-              Sustainability Framework
+              {t("esgTag")}
             </span>
             <h2 className="font-display font-bold text-3xl md:text-5xl text-white mt-3 mb-6">
-              Our Commitment to ESG
+              {t("esgTitle")}
             </h2>
             <p className="text-slate-400 font-light leading-relaxed">
-              We operate under the firm belief that Mozambique's development must be sustainable, socially equitable, and built on transparent governance standards.
+              {t("esgSub")}
             </p>
           </motion.div>
         </div>

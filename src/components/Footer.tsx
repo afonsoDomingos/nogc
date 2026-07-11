@@ -1,6 +1,7 @@
 "use client";
 
 import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg
@@ -48,6 +49,7 @@ const FacebookIcon = ({ className }: { className?: string }) => (
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-slate-950 border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
@@ -76,7 +78,7 @@ export default function Footer() {
             </div>
             
             <p className="text-xs text-slate-400 font-light leading-relaxed max-w-sm">
-              National Oil & Gas Company SA is Mozambique's premier corporate energy supplier. We integrate upstream exploration with downstream infrastructure and renewable energy systems.
+              {t("footerDesc")}
             </p>
 
             {/* Social Icons */}
@@ -104,31 +106,31 @@ export default function Footer() {
 
           {/* Quick Links Column */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Navigation</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">{t("footerColNav")}</h4>
             <ul className="space-y-2.5">
               <li>
                 <a href="#home" className="text-xs text-slate-400 hover:text-white transition-colors">
-                  Home
+                  {t("navHome")}
                 </a>
               </li>
               <li>
                 <a href="#about" className="text-xs text-slate-400 hover:text-white transition-colors">
-                  About Us
+                  {t("navAbout")}
                 </a>
               </li>
               <li>
                 <a href="#services" className="text-xs text-slate-400 hover:text-white transition-colors">
-                  Our Services
+                  {t("navServices")}
                 </a>
               </li>
               <li>
                 <a href="#projects" className="text-xs text-slate-400 hover:text-white transition-colors">
-                  Projects
+                  {t("navProjects")}
                 </a>
               </li>
               <li>
                 <a href="#esg" className="text-xs text-slate-400 hover:text-white transition-colors">
-                  ESG Commitments
+                  {t("navEsg")}
                 </a>
               </li>
             </ul>
@@ -136,19 +138,19 @@ export default function Footer() {
 
           {/* Core Services Column */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Operations</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">{t("footerColOps")}</h4>
             <ul className="space-y-2.5">
-              <li className="text-xs text-slate-400">Oil Exploration & Drilling</li>
-              <li className="text-xs text-slate-400">Natural Gas & LNG Processing</li>
-              <li className="text-xs text-slate-400">International Petroleum Trading</li>
-              <li className="text-xs text-slate-400">Industrial Energy Infrastructure</li>
-              <li className="text-xs text-slate-400">Renewable Grid Installations</li>
+              <li className="text-xs text-slate-400">{t("footerOp1")}</li>
+              <li className="text-xs text-slate-400">{t("footerOp2")}</li>
+              <li className="text-xs text-slate-400">{t("footerOp3")}</li>
+              <li className="text-xs text-slate-400">{t("footerOp4")}</li>
+              <li className="text-xs text-slate-400">{t("footerOp5")}</li>
             </ul>
           </div>
 
           {/* Contacts Column */}
           <div className="lg:col-span-3 flex flex-col gap-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">HQ Contact Info</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">{t("footerColContact")}</h4>
             <ul className="space-y-3.5">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-orange shrink-0 mt-0.5" />
@@ -184,17 +186,17 @@ export default function Footer() {
         {/* Tier 2: Copyright & Regulatory */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[10px] text-slate-500 font-medium">
-            &copy; {currentYear} National Oil & Gas Company SA (NOGC). All rights reserved.
+            &copy; {currentYear} {t("footerCopyright")}
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-[10px] text-slate-500 hover:text-slate-300 font-medium transition-colors">
-              Privacy Policy
+              {t("footerPrivacy")}
             </a>
             <a href="#" className="text-[10px] text-slate-500 hover:text-slate-300 font-medium transition-colors">
-              Terms of Service
+              {t("footerTerms")}
             </a>
             <a href="#" className="text-[10px] text-slate-500 hover:text-slate-300 font-medium transition-colors">
-              Regulatory Disclosure
+              {t("footerDisclosure")}
             </a>
           </div>
         </div>
