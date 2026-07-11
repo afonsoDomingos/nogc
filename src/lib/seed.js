@@ -72,13 +72,13 @@ async function seed() {
 
     // 1. Create Default Admin User
     const adminEmail = "admin@nogc.co.mz";
-    const rawPassword = "vibe_admin_2026";
+    const rawPassword = "@Admin123@";
     
     console.log("Checking for existing administrator account...");
     const existingUser = await User.findOne({ email: adminEmail });
+    const hashedPassword = await bcrypt.hash(rawPassword, 10);
     if (!existingUser) {
       console.log("Creating default administrator account...");
-      const hashedPassword = await bcrypt.hash(rawPassword, 10);
       const newAdmin = new User({
         email: adminEmail,
         password: hashedPassword
@@ -86,7 +86,10 @@ async function seed() {
       await newAdmin.save();
       console.log(`Admin user created: ${adminEmail} | password: ${rawPassword}`);
     } else {
-      console.log("Administrator account already exists.");
+      console.log("Administrator account already exists. Updating password...");
+      existingUser.password = hashedPassword;
+      await existingUser.save();
+      console.log(`Admin password updated for: ${adminEmail}`);
     }
 
     // 2. Create Dynamic Site Content
