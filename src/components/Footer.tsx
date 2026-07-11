@@ -185,9 +185,15 @@ export default function Footer() {
 
         {/* Tier 2: Copyright & Regulatory */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[10px] text-slate-500 font-medium">
-            &copy; {currentYear} {t("footerCopyright")}
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+            <p className="text-[10px] text-slate-500 font-medium">
+              &copy; {currentYear} {t("footerCopyright")}
+            </p>
+            <span className="hidden sm:inline text-slate-700 text-[10px]">&bull;</span>
+            <p className="text-[10px] text-slate-500 font-medium">
+              Powered by <a href="https://isvibe.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-orange hover:underline font-semibold">Vibe</a>
+            </p>
+          </div>
           <div className="flex items-center gap-6">
             <a href="#" className="text-[10px] text-slate-500 hover:text-slate-300 font-medium transition-colors">
               {t("footerPrivacy")}
