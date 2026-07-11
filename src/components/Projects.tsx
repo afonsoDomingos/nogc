@@ -5,10 +5,26 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "../context/LanguageContext";
 
-export default function Projects() {
-  const { t } = useLanguage();
+interface ProjectItem {
+  title_en: string;
+  title_pt: string;
+  category_en: string;
+  category_pt: string;
+  location_en: string;
+  location_pt: string;
+  description_en: string;
+  description_pt: string;
+  image: string;
+}
 
-  const projects = [
+interface ProjectsProps {
+  content?: ProjectItem[];
+}
+
+export default function Projects({ content }: ProjectsProps) {
+  const { language, t } = useLanguage();
+
+  const defaultProjects = [
     {
       title: t("proj1Title"),
       category: t("proj1Cat"),
@@ -32,6 +48,16 @@ export default function Projects() {
     },
   ];
 
+  const projectsList = content && content.length > 0
+    ? content.map((item) => ({
+        title: language === "en" ? item.title_en : item.title_pt,
+        category: language === "en" ? item.category_en : item.category_pt,
+        location: language === "en" ? item.location_en : item.location_pt,
+        description: language === "en" ? item.description_en : item.description_pt,
+        image: item.image,
+      }))
+    : defaultProjects;
+
   return (
     <section id="projects" className="py-24 bg-slate-900/20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +79,7 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((proj, idx) => (
+          {projectsList.map((proj, idx) => (
             <motion.div
               key={proj.title}
               initial={{ opacity: 0, y: 50 }}

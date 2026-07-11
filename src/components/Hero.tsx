@@ -5,8 +5,29 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "../context/LanguageContext";
 
-export default function Hero() {
-  const { t } = useLanguage();
+interface HeroProps {
+  content?: {
+    tag_en: string;
+    tag_pt: string;
+    titleLine1_en: string;
+    titleLine1_pt: string;
+    titleLine2_en: string;
+    titleLine2_pt: string;
+    sub_en: string;
+    sub_pt: string;
+    bgImage: string;
+  };
+}
+
+export default function Hero({ content }: HeroProps) {
+  const { language, t } = useLanguage();
+
+  // Dynamic values with static translations fallback
+  const tag = content ? (language === "en" ? content.tag_en : content.tag_pt) : t("heroTag");
+  const title1 = content ? (language === "en" ? content.titleLine1_en : content.titleLine1_pt) : t("heroTitleLine1");
+  const title2 = content ? (language === "en" ? content.titleLine2_en : content.titleLine2_pt) : t("heroTitleLine2");
+  const sub = content ? (language === "en" ? content.sub_en : content.sub_pt) : t("heroSub");
+  const bgImage = content?.bgImage || "/hero_offshore.png";
 
   return (
     <section
@@ -16,8 +37,8 @@ export default function Hero() {
       {/* Background Image with optimized Next.js Image component */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero_offshore.png"
-          alt="Offshore oil rig at sunset"
+          src={bgImage}
+          alt="Corporate banner"
           fill
           priority
           sizes="100vw"
@@ -42,7 +63,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-orange animate-ping" />
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-              {t("heroTag")}
+              {tag}
             </span>
           </motion.div>
 
@@ -53,9 +74,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-display font-extrabold text-5xl md:text-7xl tracking-tight text-white mb-6 leading-[1.1]"
           >
-            {t("heroTitleLine1")} <br />
+            {title1} <br />
             <span className="bg-gradient-to-r from-petroleum via-sky-400 to-orange bg-clip-text text-transparent text-glow-petroleum">
-              {t("heroTitleLine2")}
+              {title2}
             </span>
           </motion.h1>
 
@@ -66,7 +87,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-slate-300 font-light leading-relaxed mb-10 max-w-2xl"
           >
-            {t("heroSub")}
+            {sub}
           </motion.p>
 
           {/* Buttons */}

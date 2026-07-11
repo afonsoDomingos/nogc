@@ -14,10 +14,35 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
-export default function Services() {
-  const { t } = useLanguage();
+interface ServiceItem {
+  title_en: string;
+  title_pt: string;
+  description_en: string;
+  description_pt: string;
+}
 
-  const services = [
+interface ServicesProps {
+  content?: ServiceItem[];
+}
+
+export default function Services({ content }: ServicesProps) {
+  const { language, t } = useLanguage();
+
+  const getServiceIcon = (idx: number) => {
+    const icons = [
+      <Search className="w-6 h-6 text-orange" />,
+      <Flame className="w-6 h-6 text-petroleum" />,
+      <Globe2 className="w-6 h-6 text-orange" />,
+      <Cpu className="w-6 h-6 text-petroleum" />,
+      <Layers className="w-6 h-6 text-orange" />,
+      <BarChart3 className="w-6 h-6 text-petroleum" />,
+      <Truck className="w-6 h-6 text-orange" />,
+      <Sun className="w-6 h-6 text-petroleum" />,
+    ];
+    return icons[idx % icons.length];
+  };
+
+  const defaultServices = [
     {
       title: t("service1Title"),
       description: t("service1Desc"),
@@ -60,6 +85,14 @@ export default function Services() {
     },
   ];
 
+  const servicesList = content && content.length > 0
+    ? content.map((item, idx) => ({
+        title: language === "en" ? item.title_en : item.title_pt,
+        description: language === "en" ? item.description_en : item.description_pt,
+        icon: getServiceIcon(idx),
+      }))
+    : defaultServices;
+
   return (
     <section id="services" className="py-24 bg-slate-900/40 relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-petroleum/5 rounded-full blur-3xl pointer-events-none" />
@@ -88,7 +121,7 @@ export default function Services() {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((svc, idx) => (
+          {servicesList.map((svc, idx) => (
             <motion.div
               key={svc.title}
               initial={{ opacity: 0, y: 40 }}

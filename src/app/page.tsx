@@ -11,8 +11,28 @@ import News from "../components/News";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
+import dbConnect from "../lib/db";
+import Content from "../models/Content";
 
-export default function Home() {
+// Server-side database query helper
+async function getSiteContent() {
+  try {
+    await dbConnect();
+    const doc = await Content.findOne().lean();
+    if (doc) {
+      // Serialize Mongoose ObjectIds / dates for Next.js JSON compatibility
+      return JSON.parse(JSON.stringify(doc));
+    }
+    return null;
+  } catch (error) {
+    console.error("Mongoose server-side fetch failed, using frontend localizations fallback.", error);
+    return null;
+  }
+}
+
+export default async function Home() {
+  const dbContent = await getSiteContent();
+
   return (
     <div className="min-h-screen flex flex-col justify-between">
       {/* Dynamic Header */}
@@ -21,13 +41,13 @@ export default function Home() {
       {/* Main Content Layout */}
       <main className="flex-grow">
         {/* Fullscreen Hero Cover */}
-        <Hero />
+        <Hero content={dbContent?.hero} />
 
         {/* Institutional Section */}
         <AboutUs />
 
         {/* Services Showcase */}
-        <Services />
+        <Services content={dbContent?.services} />
 
         {/* Why Choose Us Values Grid */}
         <WhyChooseUs />
@@ -36,7 +56,7 @@ export default function Home() {
         <Stats />
 
         {/* Strategic Projects Portfolio */}
-        <Projects />
+        <Projects content={dbContent?.projects} />
 
         {/* Environmental, Social & Governance Commitments */}
         <ESG />
@@ -45,7 +65,7 @@ export default function Home() {
         <Partners />
 
         {/* Media & News Press Releases */}
-        <News />
+        <News content={dbContent?.news} />
 
         {/* Interactive Contact Form */}
         <Contact />

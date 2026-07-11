@@ -4,10 +4,25 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
-export default function News() {
-  const { t } = useLanguage();
+interface NewsItem {
+  category_en: string;
+  category_pt: string;
+  date_en: string;
+  date_pt: string;
+  title_en: string;
+  title_pt: string;
+  description_en: string;
+  description_pt: string;
+}
 
-  const articles = [
+interface NewsProps {
+  content?: NewsItem[];
+}
+
+export default function News({ content }: NewsProps) {
+  const { language, t } = useLanguage();
+
+  const defaultArticles = [
     {
       category: t("news1Cat"),
       date: t("news1Date"),
@@ -27,6 +42,15 @@ export default function News() {
       description: t("news3Desc"),
     },
   ];
+
+  const articlesList = content && content.length > 0
+    ? content.map((item) => ({
+        category: language === "en" ? item.category_en : item.category_pt,
+        date: language === "en" ? item.date_en : item.date_pt,
+        title: language === "en" ? item.title_en : item.title_pt,
+        description: language === "en" ? item.description_en : item.description_pt,
+      }))
+    : defaultArticles;
 
   return (
     <section id="news" className="py-24 bg-slate-900/10 relative">
@@ -54,7 +78,7 @@ export default function News() {
 
         {/* News Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {articles.map((art, idx) => (
+          {articlesList.map((art, idx) => (
             <motion.article
               key={art.title}
               initial={{ opacity: 0, y: 40 }}
