@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-petroleum: #0B5FA5;
-  --color-darkblue: #012B52;
-  --color-orange: #F7941D;
+  --color-petroleum: #0082FB; /* Vibrant brand blue from logo */
+  --color-darkblue: #0045A5; /* Deep brand blue from logo */
+  --color-orange: #FF5E00; /* Vibrant brand orange/red from logo */
+  --color-flame-red: #FF2E00; /* Bright flame red from logo */
+  --color-flame-yellow: #FFC000; /* Yellow/orange flame accent from logo */
   --font-sans: var(--font-inter), sans-serif;
   --font-display: var(--font-outfit), sans-serif;
 }
@@ -27,11 +29,11 @@ body {
   background: #020617;
 }
 ::-webkit-scrollbar-thumb {
-  background: #012B52;
+  background: #0045A5;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0B5FA5;
+  background: #0082FB;
 }
 
 /* Glassmorphism panel styling */
@@ -59,7 +61,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(11, 95, 165, 0.5), rgba(247, 148, 29, 0.3));
+  background: linear-gradient(135deg, rgba(0, 130, 251, 0.5), rgba(255, 94, 0, 0.3));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -68,11 +70,11 @@ body {
 
 /* Text style utility classes */
 .text-glow-orange {
-  text-shadow: 0 0 20px rgba(247, 148, 29, 0.35);
+  text-shadow: 0 0 20px rgba(255, 94, 0, 0.35);
 }
 
 .text-glow-petroleum {
-  text-shadow: 0 0 20px rgba(11, 95, 165, 0.35);
+  text-shadow: 0 0 20px rgba(0, 130, 251, 0.35);
 }
 
 /* Custom Animations */

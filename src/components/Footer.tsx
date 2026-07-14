@@ -2,6 +2,7 @@
 
 import { Mail, Phone, MapPin, Globe } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import Image from "next/image";
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg
@@ -64,8 +65,13 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-gradient-to-br from-petroleum to-darkblue border border-white/10 shadow-md">
-                <span className="font-display font-extrabold text-sm text-white">N</span>
+              <div className="relative w-10 h-10 flex items-center justify-center rounded-lg overflow-hidden">
+                <Image
+                  src="/logooficial.png"
+                  alt="NOGC Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-bold text-base leading-tight tracking-wider text-white">

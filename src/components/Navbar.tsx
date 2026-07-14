@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,9 +44,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-petroleum to-darkblue border border-white/10 shadow-md group-hover:scale-105 transition-transform duration-300">
-              <span className="font-display font-extrabold text-lg text-white">N</span>
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-orange animate-pulse" />
+            <div className="relative w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/logooficial.png"
+                alt="NOGC Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-display font-bold text-lg leading-tight tracking-wider text-white group-hover:text-petroleum transition-colors duration-300">

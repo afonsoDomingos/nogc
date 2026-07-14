@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { LayoutDashboard, Mail, LogOut, ArrowLeft, Loader } from "lucide-react";
+import Image from "next/image";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -66,8 +67,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="flex flex-col gap-8">
           {/* Logo Branding */}
           <div className="flex items-center gap-3 px-2">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-petroleum to-darkblue border border-white/10 shadow-md">
-              <span className="font-display font-extrabold text-sm text-white">N</span>
+            <div className="relative w-8 h-8 flex items-center justify-center rounded-lg overflow-hidden">
+              <Image
+                src="/logooficial.png"
+                alt="NOGC Logo"
+                fill
+                className="object-contain"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-display font-bold text-sm tracking-wider text-white">NOGC Admin</span>
@@ -121,8 +127,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Mobile Header Bar */}
         <header className="md:hidden bg-slate-900 border-b border-white/5 py-4 px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-br from-petroleum to-darkblue border border-white/10">
-              <span className="font-display font-extrabold text-sm text-white">N</span>
+            <div className="relative w-8 h-8 flex items-center justify-center rounded-lg overflow-hidden">
+              <Image
+                src="/logooficial.png"
+                alt="NOGC Logo"
+                fill
+                className="object-contain"
+              />
             </div>
             <span className="font-display font-bold text-sm tracking-wider">NOGC Admin</span>
           </div>
