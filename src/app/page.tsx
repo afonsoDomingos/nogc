@@ -34,7 +34,7 @@ export default async function Home() {
   const dbContent = await getSiteContent();
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen flex flex-col justify-between overflow-x-hidden w-full">
       {/* Dynamic Header */}
       <Navbar />
 
